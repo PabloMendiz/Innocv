@@ -25,7 +25,7 @@ interface Api {
 }
 
 object RetrofitFactory {
-    private const val URL = "https://hello-world.innocv.com/api/"
+    private const val URL = "http://hello-world.innocv.com/api/"
 
     fun getApi(): Api {
         return Retrofit.Builder()

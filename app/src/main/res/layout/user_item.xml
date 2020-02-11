@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/movieIcon"
-        android:layout_width="145dp"
-        android:layout_height="134dp"
+        android:layout_width="127dp"
+        android:layout_height="117dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
@@ -29,7 +29,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/movieIcon"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/movieIcon"
         tools:text="@string/userName" />
 
     <TextView
@@ -49,18 +49,19 @@
 
     <Button
         android:id="@+id/btnEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="79dp"
+        android:layout_height="40dp"
         android:text="@string/edit"
         app:layout_constraintBottom_toBottomOf="@+id/movieIcon"
-        app:layout_constraintStart_toStartOf="@+id/userBirthDateTxt"
-        app:layout_constraintTop_toBottomOf="@+id/userBirthDateTxt" />
+        app:layout_constraintEnd_toStartOf="@+id/btnDelete"
+        app:layout_constraintStart_toEndOf="@+id/movieIcon" />
 
     <Button
         android:id="@+id/btnDelete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="77dp"
+        android:layout_height="40dp"
         android:text="@string/delete"
+        app:layout_constraintBottom_toBottomOf="@+id/btnEdit"
         app:layout_constraintEnd_toEndOf="@+id/userBirthDateTxt"
         app:layout_constraintTop_toTopOf="@+id/btnEdit" />
 

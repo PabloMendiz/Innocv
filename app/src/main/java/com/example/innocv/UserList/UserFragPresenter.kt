@@ -37,13 +37,33 @@ class UserFragPresenter(
                         view.showMsg("User deleted")
                         init()
                     }
-                    else -> view.showMsg("Err")
+                    else -> view.showMsg("Err deleting user")
                 }
             }
         }
     }
+    fun addUser() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     fun editUser(id: Int) {
         val id = id
+    }
+
+    fun deleteAllUsers() {
+        CoroutineScope(Dispatchers.IO).launch {
+            val deleted = true
+            // val areDeleted = remoteRepository.deleteAllUsers()
+            withContext(Dispatchers.Main) {
+                when {
+                    deleted -> {
+                        view.showMsg("All users should delete deleted")
+                        init()
+                    }
+                    else -> view.showMsg("Err deleting all")
+                }
+            }
+        }
     }
 }
 

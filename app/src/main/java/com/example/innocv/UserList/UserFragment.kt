@@ -11,6 +11,7 @@ import com.example.innocv.R
 import com.example.innocv.remote.RemoteRepository
 import com.example.innocv.remote.RetrofitFactory
 import com.example.innocv.remote.RetrofitRemoteRepository
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class UserFragment : Fragment(), UserView {
     private lateinit var remoteRepository: RemoteRepository
@@ -19,6 +20,7 @@ class UserFragment : Fragment(), UserView {
     private lateinit var userRecyclerView: RecyclerView
     private lateinit var presenter: UserFragPresenter
 
+    private lateinit var addUserBtn: FloatingActionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,17 +41,15 @@ class UserFragment : Fragment(), UserView {
         this.userRecyclerView.layoutManager = LinearLayoutManager(this.context)
         this.userRecyclerView.adapter = this.userAdapter
 
-        this.presenter.init()
+        this.addUserBtn = view.findViewById(R.id.addBtn)
+        addUserBtn.setOnClickListener {
+            presenter.addUser()
+        }
 
+        this.presenter.init()
 
         return view
     }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.option_menu, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
     // UserView Functions
     override fun showUsers(results: List<User>?) {
         results?.let { userAdapter.addUserToList(it) }

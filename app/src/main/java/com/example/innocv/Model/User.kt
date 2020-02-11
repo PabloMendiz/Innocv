@@ -5,5 +5,3 @@ data class User(
     val name: String,
     val birthDate: String
 )
-
-data class UserResults(val results: List<User>)
