@@ -3,7 +3,13 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="userName">userName</string>
+    <string name="userName">User name</string>
     <string name="imgDescription">img_des</string>
-    <string name="birth_date">userBirthDate</string>
+    <string name="birth_date">Birth date</string>
+    <string name="name">Name</string>
+    <string name="delete_all">Delete all</string>
+    <string name="sort_by">Sort by</string>
+    <string name="user_list">User list</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
 </resources>

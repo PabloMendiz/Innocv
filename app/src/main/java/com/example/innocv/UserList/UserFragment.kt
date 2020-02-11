@@ -1,65 +1,61 @@
 package com.example.innocv.UserList
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.innocv.Model.User
 import com.example.innocv.R
 import com.example.innocv.remote.RemoteRepository
+import com.example.innocv.remote.RetrofitFactory
+import com.example.innocv.remote.RetrofitRemoteRepository
 
-class UserFragment : Fragment(), UserView, RemoteRepository {
-    private lateinit var userAdapter: UserAdapter
+class UserFragment : Fragment(), UserView {
     private lateinit var remoteRepository: RemoteRepository
+
+    private lateinit var userAdapter: UserAdapter
+    private lateinit var userRecyclerView: RecyclerView
+    private lateinit var presenter: UserFragPresenter
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_user, container, false)
-        val presenter = UserFragPresenter(this, remoteRepository)
-        presenter.init()
-        userAdapter = UserAdapter {
-            val user = it as User
+        val view = inflater.inflate(R.layout.fragment_user, container, false)
 
-        }
+        this.remoteRepository = RetrofitRemoteRepository(RetrofitFactory.getApi())
+        this.presenter = UserFragPresenter(this, this.remoteRepository)
+        this.userAdapter = UserAdapter(this.presenter)
+
+        this.userRecyclerView = view.findViewById(R.id.userRecyclerView)
+        this.userRecyclerView.layoutManager = LinearLayoutManager(this.context)
+        this.userRecyclerView.adapter = this.userAdapter
+
+        this.presenter.init()
+
+
+        return view
     }
 
-    /*
-          UserView Functions
-     */
-    override fun showEmpty() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.option_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
-    override fun showError() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    // UserView Functions
+    override fun showUsers(results: List<User>?) {
+        results?.let { userAdapter.addUserToList(it) }
     }
 
-    override fun showUsers(results: Any) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    /*
-    Remote Repository funtions
-     */
-    override suspend fun getUserList(): List<User>? {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override suspend fun getOneUser(id: Int): User? {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override suspend fun addUser(user: User): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override suspend fun updateUser(user: User): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override suspend fun deleteUser(id: Int): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun showMsg(txt: String) {
+        Toast.makeText(this.context, txt, Toast.LENGTH_SHORT).show()
     }
 }

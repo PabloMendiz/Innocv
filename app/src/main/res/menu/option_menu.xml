@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/actionDelete"
+        android:title="@string/delete_all" />
+    <item
+        android:id="@+id/actionSortBy"
+        android:title="@string/sort_by">
+        <menu>
+            <item android:id="@+id/actionSortbyTitle"
+                android:title="@string/name" />
+            <item android:id="@+id/actionSortbyDate"
+                android:title="@string/birth_date" />
+        </menu>
+    </item>
+</menu>

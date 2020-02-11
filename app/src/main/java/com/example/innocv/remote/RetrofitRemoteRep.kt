@@ -4,25 +4,42 @@ import com.example.innocv.Model.User
 
 
 class RetrofitRemoteRepository(private val api: Api) : RemoteRepository {
-    override suspend fun getUserList(): List<User>? {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
+    //Gets a list of users on the API and returns the response.body if response is successful
+    override suspend fun getUserList(): List<User> {
+        val response = api.getUserList()
+        return if (response.isSuccessful)
+            response.body()!!
+        else
+            return emptyList()
     }
 
+    //Get a user by id and returns the response.body if response is successful
     override suspend fun getOneUser(id: Int): User? {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val response = api.getOneUser(id)
+        return when {
+            response.isSuccessful -> response.body()!!
+            else -> {
+                null
+            }
+        }
     }
 
+    //Adds a user and returns TRUE if successful
     override suspend fun addUser(user: User): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val response = api.addUser(user)
+        return response.isSuccessful
     }
 
+    //Updates a user and returns TRUE if successful
     override suspend fun updateUser(user: User): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val response = api.updateUser(user)
+        return response.isSuccessful
     }
 
+    //Delete a user finding it by it and returns TRUE if successful
     override suspend fun deleteUser(id: Int): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val response = api.deleteUser(id)
+        return response.isSuccessful
     }
-
-
 }

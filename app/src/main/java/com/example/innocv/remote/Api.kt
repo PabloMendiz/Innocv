@@ -7,6 +7,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.*
 
 interface Api {
+
     @GET("User")
     suspend fun getUserList(): Response<List<User>>
 

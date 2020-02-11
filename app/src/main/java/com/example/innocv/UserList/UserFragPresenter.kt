@@ -1,7 +1,7 @@
 package com.example.innocv.UserList
 
+import com.example.innocv.Model.User
 import com.example.innocv.remote.RemoteRepository
-import com.example.innocv.remote.RetrofitFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -11,28 +11,43 @@ class UserFragPresenter(
     private val view: UserView,
     private val remoteRepository: RemoteRepository
 ) {
-
+    // Initialize the view when app start loading all users
     fun init() {
-        val api = RetrofitFactory.getApi()
         CoroutineScope(Dispatchers.IO).launch {
-            val response = api.getUserList()
+            val users: List<User>? = remoteRepository.getUserList()
             withContext(Dispatchers.Main) {
-                if (response.isSuccessful) {
-                    val users = response.body()!!
-                    if (users.isEmpty()) {
-                        view.showEmpty()
+                when {
+                    users.isNullOrEmpty() -> {
+                        view.showMsg("Err")
                     }
-                    view.showUsers(users)
-                } else {
-                    view.showError()
+                    else -> view.showUsers(users)
+                }
+
+            }
+        }
+    }
+
+    //Deletes a selected user
+    fun deleteUser(id: Int) {
+        CoroutineScope(Dispatchers.IO).launch {
+            val isDeleted = remoteRepository.deleteUser(id)
+            withContext(Dispatchers.Main) {
+                when {
+                    isDeleted -> {
+                        view.showMsg("User deleted")
+                        init()
+                    }
+                    else -> view.showMsg("Err")
                 }
             }
         }
     }
+    fun editUser(id: Int) {
+        val id = id
+    }
 }
 
 interface UserView {
-    fun showEmpty()
-    fun showError()
-    fun showUsers(results: Any)
+    fun showUsers(results: List<User>?)
+    fun showMsg(txt: String)
 }
