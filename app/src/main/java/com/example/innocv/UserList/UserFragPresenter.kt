@@ -11,6 +11,8 @@ class UserFragPresenter(
     private val view: UserView,
     private val remoteRepository: RemoteRepository
 ) {
+    private lateinit var user: User
+
     // Initialize the view when app start loading all users
     fun init() {
         CoroutineScope(Dispatchers.IO).launch {
@@ -18,11 +20,10 @@ class UserFragPresenter(
             withContext(Dispatchers.Main) {
                 when {
                     users.isNullOrEmpty() -> {
-                        view.showMsg("Err")
+                        return@withContext view.showMsg("List is empty or null")
                     }
                     else -> view.showUsers(users)
                 }
-
             }
         }
     }
@@ -32,42 +33,23 @@ class UserFragPresenter(
         CoroutineScope(Dispatchers.IO).launch {
             val isDeleted = remoteRepository.deleteUser(id)
             withContext(Dispatchers.Main) {
-                when {
-                    isDeleted -> {
-                        view.showMsg("User deleted")
-                        init()
-                    }
-                    else -> view.showMsg("Err deleting user")
-                }
+                if (isDeleted) {
+                    view.showMsg("User deleted")
+                    init()
+                } else view.showMsg("Err deleting user")
             }
         }
     }
-    fun addUser() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
+    //Sends an order to the view to open the EditUser.Activity
+    fun editUser(user: User) {
+        view.openEditView(user)
     }
 
-    fun editUser(id: Int) {
-        val id = id
-    }
-
-    fun deleteAllUsers() {
-        CoroutineScope(Dispatchers.IO).launch {
-            val deleted = true
-            // val areDeleted = remoteRepository.deleteAllUsers()
-            withContext(Dispatchers.Main) {
-                when {
-                    deleted -> {
-                        view.showMsg("All users should delete deleted")
-                        init()
-                    }
-                    else -> view.showMsg("Err deleting all")
-                }
-            }
-        }
-    }
 }
 
 interface UserView {
     fun showUsers(results: List<User>?)
     fun showMsg(txt: String)
+    fun openEditView(user: User)
 }

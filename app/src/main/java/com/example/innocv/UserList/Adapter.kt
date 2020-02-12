@@ -37,13 +37,13 @@ class UserAdapter(private val presenter: UserFragPresenter) :
 
         fun bind(user: User, presenter: UserFragPresenter) {
             userName.text = user.name
-            userBirthDate.text = user.birthDate
+            userBirthDate.text = user.birthdate
 
             deleteBtn.setOnClickListener {
                 presenter.deleteUser(user.id)
             }
             editBtn.setOnClickListener {
-                presenter.editUser(user.id)
+                presenter.editUser(user)
             }
         }
 
