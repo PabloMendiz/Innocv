@@ -13,8 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".EditUser.EditUserActivity"></activity>
-        <activity android:name=".AddUserFragment.AddUserDialogFragment" />
+        <activity android:name="com.example.innocv.ui.EditUser.EditUserActivity"></activity>
+        <activity android:name="com.example.innocv.ui.AddUserFragment.AddUserDialogFragment" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action

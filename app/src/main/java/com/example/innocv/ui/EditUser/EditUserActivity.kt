@@ -1,17 +1,15 @@
-package com.example.innocv.EditUser
+package com.example.innocv.ui.EditUser
 
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.innocv.Model.User
+import com.example.innocv.data.Model.User
 import com.example.innocv.R
-import com.example.innocv.remote.RemoteRepository
-import com.example.innocv.remote.RetrofitFactory
-import com.example.innocv.remote.RetrofitRemoteRepository
-import com.example.innocv.ui.EditUser.EditUserPresenter
-import com.example.innocv.ui.EditUser.EditUserView
+import com.example.innocv.data.remote.RemoteRepository
+import com.example.innocv.data.remote.RetrofitFactory
+import com.example.innocv.data.remote.RetrofitRemoteRepository
 
 class EditUserActivity : AppCompatActivity(), EditUserView {
     private lateinit var presenter: EditUserPresenter
@@ -31,7 +29,7 @@ class EditUserActivity : AppCompatActivity(), EditUserView {
         this.nameTxt = findViewById(R.id.updatedNameTxt)
         this.birthTxt = findViewById(R.id.updatedBirthTxt)
 
-//Get intent values
+        //Get intent values
         val id = intent.extras?.getInt("id")!!
         val name = intent.extras?.getString("name")!!
         val birth = intent.extras?.getString("birth")!!

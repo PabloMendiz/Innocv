@@ -1,9 +1,9 @@
-package com.example.innocv.AddUserFragment
+package com.example.innocv.ui.AddUserFragment
 
 import android.app.Dialog
 import android.os.Bundle
-import com.example.innocv.Model.User
-import com.example.innocv.remote.RemoteRepository
+import com.example.innocv.data.Model.User
+import com.example.innocv.data.remote.RemoteRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

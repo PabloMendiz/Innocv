@@ -1,4 +1,4 @@
-package com.example.innocv.UserList
+package com.example.innocv.ui.UserList
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,13 +10,13 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.innocv.AddUserFragment.AddUserDialogFragment
-import com.example.innocv.EditUser.EditUserActivity
-import com.example.innocv.Model.User
+import com.example.innocv.ui.AddUserFragment.AddUserDialogFragment
+import com.example.innocv.ui.EditUser.EditUserActivity
+import com.example.innocv.data.Model.User
 import com.example.innocv.R
-import com.example.innocv.remote.RemoteRepository
-import com.example.innocv.remote.RetrofitFactory
-import com.example.innocv.remote.RetrofitRemoteRepository
+import com.example.innocv.data.remote.RemoteRepository
+import com.example.innocv.data.remote.RetrofitFactory
+import com.example.innocv.data.remote.RetrofitRemoteRepository
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class UserFragment : Fragment(), UserView {

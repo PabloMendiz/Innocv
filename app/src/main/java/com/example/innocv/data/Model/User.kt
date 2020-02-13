@@ -1,4 +1,4 @@
-package com.example.innocv.Model
+package com.example.innocv.data.Model
 
 data class User(
     val id: Int,

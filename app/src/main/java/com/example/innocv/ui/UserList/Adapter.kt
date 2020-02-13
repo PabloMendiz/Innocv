@@ -1,4 +1,4 @@
-package com.example.innocv.UserList
+package com.example.innocv.ui.UserList
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.innocv.Model.User
+import com.example.innocv.data.Model.User
 import com.example.innocv.R
 
 

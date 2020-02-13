@@ -1,6 +1,6 @@
-package com.example.innocv.remote
+package com.example.innocv.data.remote
 
-import com.example.innocv.Model.User
+import com.example.innocv.data.Model.User
 
 
 class RetrofitRemoteRepository(private val api: Api) : RemoteRepository {

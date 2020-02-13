@@ -1,7 +1,7 @@
-package com.example.innocv.UserList
+package com.example.innocv.ui.UserList
 
-import com.example.innocv.Model.User
-import com.example.innocv.remote.RemoteRepository
+import com.example.innocv.data.Model.User
+import com.example.innocv.data.remote.RemoteRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

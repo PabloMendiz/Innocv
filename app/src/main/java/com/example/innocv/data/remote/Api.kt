@@ -1,6 +1,6 @@
-package com.example.innocv.remote
+package com.example.innocv.data.remote
 
-import com.example.innocv.Model.User
+import com.example.innocv.data.Model.User
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory

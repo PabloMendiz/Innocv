@@ -1,4 +1,4 @@
-package com.example.innocv.AddUserFragment
+package com.example.innocv.ui.AddUserFragment
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -6,11 +6,11 @@ import android.os.Bundle
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
-import com.example.innocv.Model.User
+import com.example.innocv.data.Model.User
 import com.example.innocv.R
-import com.example.innocv.remote.RemoteRepository
-import com.example.innocv.remote.RetrofitFactory
-import com.example.innocv.remote.RetrofitRemoteRepository
+import com.example.innocv.data.remote.RemoteRepository
+import com.example.innocv.data.remote.RetrofitFactory
+import com.example.innocv.data.remote.RetrofitRemoteRepository
 
 
 class AddUserDialogFragment : DialogFragment(), AddUserView {

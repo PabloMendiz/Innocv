@@ -1,6 +1,6 @@
-package com.example.innocv.remote
+package com.example.innocv.data.remote
 
-import com.example.innocv.Model.User
+import com.example.innocv.data.Model.User
 
 interface RemoteRepository {
     suspend fun getUserList(): List<User>
