@@ -20,7 +20,7 @@ class UserFragPresenter(
             withContext(Dispatchers.Main) {
                 when {
                     users.isNullOrEmpty() -> {
-                        return@withContext view.showMsg("List is empty or null")
+                        view.showMsg("List is empty or null")
                     }
                     else -> view.showUsers(users)
                 }

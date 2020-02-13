@@ -1,6 +1,7 @@
-package com.example.innocv.EditUser
+package com.example.innocv.ui.EditUser
 
 import com.example.innocv.Model.User
+
 import com.example.innocv.remote.RemoteRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -12,24 +13,22 @@ class EditUserPresenter(
     private val remoteRepository: RemoteRepository
 ) {
     lateinit var user: User
-    fun init(user: User) {
-        this.user = user
-    }
-
-    fun editUser(user: User) {
+    fun editUser(updatedUser: User) {
+        this.user = updatedUser
         CoroutineScope(Dispatchers.IO).launch {
             val isUpdated = remoteRepository.updateUser(user)
             withContext(Dispatchers.Main) {
-                if (isUpdated) {
-                    return@withContext view.showMsg("User updated")
-                } else view.showMsg("Err updating user")
+                when {
+                    isUpdated -> view.navigateToMain()
+                    else -> view.showMsg("Error updating")
+                }
             }
         }
     }
-
 }
 
 interface EditUserView {
     fun showMsg(s: String)
-
+    fun navigateToMain()
 }
+

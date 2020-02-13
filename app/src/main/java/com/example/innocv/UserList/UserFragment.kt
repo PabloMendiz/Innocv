@@ -2,6 +2,7 @@ package com.example.innocv.UserList
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -59,14 +60,11 @@ class UserFragment : Fragment(), UserView {
     }
 
     override fun onResume() {
+        Log.e("FRAGMENT", "onResume")
         super.onResume()
         this.presenter.init()
     }
 
-    override fun onStart() {
-        super.onStart()
-        this.presenter.init()
-    }
     /*
      UserView Functions
      */
