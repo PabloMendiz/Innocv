@@ -55,7 +55,9 @@ class UserFragment : Fragment(), UserView {
         super.onViewCreated(view, savedInstanceState)
 
         addUserBtn.setOnClickListener {
-            AddUserDialogFragment().show(childFragmentManager, "addUser")
+            AddUserDialogFragment{
+                this.presenter.init()
+            }.show(childFragmentManager, "addUser")
         }
     }
 

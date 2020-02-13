@@ -11,6 +11,7 @@ import kotlinx.coroutines.withContext
 
 
 class AddUserDialogFragmentPresenter(
+    private val view: AddUserView,
     private val remoteRepository: RemoteRepository
 ) {
     //Adds a user to the list
@@ -19,7 +20,7 @@ class AddUserDialogFragmentPresenter(
         CoroutineScope(Dispatchers.IO).launch {
             remoteRepository.addUser(buildNewUser)
             withContext(Dispatchers.Main) {
-                return@withContext
+                view.showMsg("User Added")
             }
         }
     }
